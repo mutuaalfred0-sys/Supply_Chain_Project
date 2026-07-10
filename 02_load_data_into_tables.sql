@@ -36,9 +36,21 @@ SELECT
         TRY_STRPTIME(order_placement_date, '%m/%d/%Y'), 
         TRY_STRPTIME(order_placement_date, '%d-%m-%Y')
     ) AS order_placement_date,
-    on_time, 
-    in_full, 
-    otif 
+    CASE 
+        WHEN in_full = 0 THEN 'no' 
+        WHEN in_full = 1 THEN 'yes'
+        ELSE NULL 
+    END AS in_full,
+    CASE 
+        WHEN on_time = 0 THEN 'no' 
+        WHEN on_time = 1 THEN 'yes'
+        ELSE NULL 
+    END AS on_time,
+    CASE 
+        WHEN otif = 0 THEN 'no' 
+        WHEN otif = 1 THEN 'yes'
+        ELSE NULL 
+    END AS otif, 
 FROM read_csv('A:\Alfy\Desktop\Dataset\Postgres Input files\fact_aggregate.csv',
     AUTO_DETECT = true,
     HEADER = true);
@@ -66,10 +78,23 @@ SELECT
         TRY_STRPTIME(actual_delivery_date, '%m/%d/%Y'), 
         TRY_STRPTIME(actual_delivery_date, '%d-%m-%Y')
     ) AS actual_delivery_date,
-    delivery_qty, 
-    in_full, 
-    on_time, 
-    otif
+    delivery_qty,
+    CASE 
+        WHEN in_full = 0 THEN 'no' 
+        WHEN in_full = 1 THEN 'yes'
+        ELSE NULL 
+    END AS in_full,
+    CASE 
+        WHEN on_time = 0 THEN 'no' 
+        WHEN on_time = 1 THEN 'yes'
+        ELSE NULL 
+    END AS on_time,
+    CASE 
+        WHEN otif = 0 THEN 'no' 
+        WHEN otif = 1 THEN 'yes'
+        ELSE NULL 
+    END AS otif,
+    
 FROM read_csv('A:/Alfy/Desktop/Dataset/Postgres Input files/fact_order_line.csv',
     HEADER = true,
     sample_size = -1);
@@ -110,8 +135,5 @@ SELECT *
 FROM fact_order_line 
 LIMIT 10;
 
-SELECT '===Fact Order Line Sample===' AS info;
-SELECT * 
-FROM fact_order_line
-LIMIT 10;
+
 

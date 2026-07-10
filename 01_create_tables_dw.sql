@@ -40,9 +40,9 @@ CREATE TABLE fact_aggregate (
     order_id                VARCHAR,
     customer_id             INTEGER,
     order_placement_date    DATE,
-    on_time                 INTEGER,
-    in_full                 INTEGER,
-    otif                    INTEGER,
+    on_time                 VARCHAR,
+    in_full                 VARCHAR,
+    otif                    VARCHAR,
     PRIMARY KEY (order_id),
     FOREIGN KEY (customer_id) REFERENCES dim_customers (customer_id)
 );
@@ -57,9 +57,9 @@ CREATE TABLE fact_order_line (
     agreed_delivery_date    DATE,
     actual_delivery_date    DATE,
     delivery_qty            INTEGER,
-    in_full                 INTEGER,
-    on_time                 INTEGER,
-    otif                    INTEGER,
+    in_full                 VARCHAR,
+    on_time                 VARCHAR,
+    otif                    VARCHAR,
     FOREIGN KEY(order_id) REFERENCES fact_aggregate(order_id),
     FOREIGN KEY(customer_id) REFERENCES dim_customers(customer_id),
     );
