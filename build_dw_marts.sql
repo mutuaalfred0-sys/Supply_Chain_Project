@@ -3,3 +3,6 @@
 
 -- Step 2: DW - load data into tables
 .read 02_load_data_into_tables.sql
+
+-- Step 3: Creating city delivery
+.read 03_customer_flat_mart.sql
