@@ -5,6 +5,8 @@ DROP SCHEMA IF EXISTS flat_mart CASCADE;
 
 CREATE SCHEMA flat_mart;
 
+SELECT '===Loading Flat Mart City Delivery Table===' AS info;
+
 CREATE OR REPLACE TABLE flat_mart.city_delivery AS 
 SELECT 
     fol.order_id, 
@@ -24,4 +26,11 @@ SELECT
 FROM fact_order_line AS fol
 LEFT JOIN dim_customers AS dc 
     ON fol.customer_id = dc.customer_id; 
+
+
+SELECT '===City Delivery Sample===' AS info;
+
+SELECT * 
+FROM flat_mart.city_delivery
+LIMIT 10;
 
