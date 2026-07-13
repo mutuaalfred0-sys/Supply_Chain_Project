@@ -28,7 +28,6 @@ SELECT
     dp.category,
     dp.price_INR,
     dp.price_USD 
-    -- fact aggregate fields 
 FROM fact_order_line AS fol
 LEFT JOIN dim_customers AS dc 
     ON fol.customer_id = dc.customer_id
