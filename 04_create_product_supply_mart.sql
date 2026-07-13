@@ -7,15 +7,12 @@ CREATE SCHEMA supply_mart;
 SELECT '=== loading products dim for dim_products table ===' AS info;
 
 CREATE OR REPLACE TABLE supply_mart.dim_products AS
-
 SELECT DISTINCT
-
     product_id,
     product_name,
     category,
     price_USD,
     price_INR
-
 FROM flat_mart.order_delivery;
 
 
@@ -50,7 +47,6 @@ SELECT
     EXTRACT(QUARTER FROM actual_delivery_date) :: VARCHAR AS year_quarter
 FROM flat_mart.order_delivery 
 ORDER BY month_delivery_date; 
-
 
 
 SELECT '=== Loading date_mart Fact_Product_Monthly_Supply ===' AS info;
