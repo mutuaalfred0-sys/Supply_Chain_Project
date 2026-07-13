@@ -13,4 +13,7 @@
 .read 04_create_product_supply_mart.sql 
 
 -- Step 5: DW - Creading customer delivery mart 
-.read 05_create_customer_delivery_mart.sql
+.read 05_create_customer_delivery_mart.sql 
+
+-- Step 6: DW - Creating product performace mart 
+.read 06_create_product_performance_mart.sql
