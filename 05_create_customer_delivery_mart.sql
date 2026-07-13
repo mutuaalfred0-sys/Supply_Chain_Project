@@ -1,3 +1,5 @@
+-- Step 5: DW - Creading customer delivery mart 
+
 DROP SCHEMA IF EXISTS customer_delivery_mart CASCADE;
 
 CREATE SCHEMA customer_delivery_mart; 

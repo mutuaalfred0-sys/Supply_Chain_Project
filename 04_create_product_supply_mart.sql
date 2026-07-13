@@ -1,4 +1,4 @@
---Step 4: Creating a supply mart 
+--Step 4: Creating a product supply mart 
 
 DROP SCHEMA IF EXISTS supply_mart CASCADE;
 

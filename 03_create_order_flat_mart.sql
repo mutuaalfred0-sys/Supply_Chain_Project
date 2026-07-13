@@ -1,4 +1,4 @@
--- Step 3: Creating flat mart
+-- Step 3: Creating order flat mart
 
 
 DROP SCHEMA IF EXISTS flat_mart CASCADE;
