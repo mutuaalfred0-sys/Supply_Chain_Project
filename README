@@ -1,0 +1,274 @@
+# Supply Chain Data Warehouse & Analytics with DuckDB
+
+## Overview
+
+This project demonstrates the design and implementation of a modern Supply Chain Data Warehouse using **DuckDB** and SQL. It follows a layered data warehousing architecture that transforms raw operational data into business-ready analytical data marts for reporting and decision-making.
+
+The project applies dimensional modeling techniques, ETL processes, and data mart design to analyze customer deliveries, product performance, and supply chain operations.
+
+---
+
+# Objectives
+
+* Build a dimensional data warehouse using a star schema.
+* Transform operational data into analytical datasets.
+* Create a flat reporting layer for simplified querying.
+* Develop specialized data marts for different business functions.
+* Generate supply chain KPIs using SQL.
+* Demonstrate data warehouse design and ETL best practices.
+
+---
+
+# Technology Stack
+
+* DuckDB
+* SQL
+* Git
+* GitHub
+
+---
+
+# Project Architecture
+
+![Project_Architecture](/Sources/Structure)
+
+---
+
+# Data Warehouse Design
+
+The warehouse follows a **star schema** consisting of two fact tables and three dimensions.
+
+### Dimension Tables
+
+* **dim_customers**
+  * Customer information
+  * City
+  * Currency
+
+* **dim_products**
+
+  * Product details
+  * Category
+  * Product pricing
+
+* **dim_target_orders**
+
+  * Customer delivery targets
+  * On-Time target
+  * In-Full target
+  * OTIF target
+
+### Fact Tables
+
+**fact_aggregate**
+
+Stores order-level information including:
+
+* Order ID
+* Customer
+* Order placement date
+* On-Time status
+* In-Full status
+* OTIF status
+
+**fact_order_line**
+
+Stores product-level transaction details including:
+
+* Product ordered
+* Ordered quantity
+* Delivered quantity
+* Delivery dates
+* Delivery performance indicators
+
+---
+
+# ETL Workflow
+
+The project is organized into six SQL scripts.
+
+## Step 1 — Create Data Warehouse
+
+Creates the star schema including:
+
+* Dimension tables
+* Fact tables
+* Primary keys
+* Foreign keys
+
+---
+
+## Step 2 — Load Warehouse
+
+Loads CSV data into the warehouse tables.
+
+---
+
+## Step 3 — [Build Flat Mart](/03_create_order_flat_mart.sql)
+
+Creates a denormalized reporting table by joining:
+
+* Customer dimension
+* Product dimension
+* Order facts
+
+The flat mart simplifies analytical queries and serves as the source for downstream data marts.
+
+---
+
+## Step 4 — [Product Supply Mart](/04_create_product_supply_mart.sql)
+
+Provides monthly supply chain performance by product.
+
+### Metrics
+
+* Total orders
+* Ordered quantity
+* Delivered quantity
+* Ordered value
+* Delivered value
+* On-Time %
+* In-Full %
+* OTIF %
+
+---
+
+## Step 5 — [Customer Delivery Mart](/05_create_customer_delivery_mart.sql)
+
+Measures customer delivery performance against agreed service targets.
+
+### Metrics
+
+* Monthly order volume
+* Ordered quantity
+* Delivered quantity
+* Actual On-Time %
+* Actual In-Full %
+* Actual OTIF %
+* Target comparison
+* Variance analysis
+* Performance status
+
+---
+
+## Step 6 — [Product Performance Mart](/06_create_product_performance_mart.sql)
+
+Analyzes monthly product performance.
+
+### Metrics
+
+* Total orders
+* Ordered quantity
+* Delivered quantity
+* Short quantity
+* Fill rate
+* On-Time %
+* In-Full %
+* OTIF %
+* Revenue (USD)
+* Revenue (INR)
+
+---
+
+# Key Performance Indicators (KPIs)
+
+The project calculates several supply chain KPIs, including:
+
+* On-Time Delivery %
+* In-Full Delivery %
+* OTIF %
+* Fill Rate
+* Ordered Quantity
+* Delivered Quantity
+* Short Quantity
+* Revenue by Product
+* Revenue by Currency
+* Customer Target Achievement
+* Delivery Performance Variance
+
+---
+
+# Business Questions Answered
+
+This warehouse can answer questions such as:
+
+### Customer Analytics
+
+* Which customers consistently meet delivery targets?
+* Which customers frequently miss OTIF targets?
+* Which cities have the best delivery performance?
+* Which customers generate the highest order volumes?
+
+### Product Analytics
+
+* Which products generate the highest revenue?
+* Which products experience the largest shortages?
+* Which products have the best OTIF performance?
+* Which categories perform best over time?
+
+### Supply Chain Analytics
+
+* What is the monthly fill rate?
+* How do delivery KPIs trend over time?
+* Which months have the highest demand?
+* Which products contribute most to monthly revenue?
+
+---
+
+# Project Structure
+
+```text
+project/
+│
+├── data/
+│   ├── dim_customers.csv
+│   ├── dim_products.csv
+│   ├── dim_target_orders.csv
+│   ├── fact_aggregate.csv
+│   └── fact_order_line.csv
+│
+├── sql/
+│   ├── 01_create_tables_dw.sql
+│   ├── 02_load_dw.sql
+│   ├── 03_flat_mart.sql
+│   ├── 04_create_supply_mart.sql
+│   ├── 05_customer_delivery_mart.sql
+│   └── 06_product_performance_mart.sql
+│
+├── diagrams/
+│
+├── README.md
+│
+└── LICENSE
+```
+
+---
+
+# Skills Demonstrated
+
+* Data Warehouse Design
+* Star Schema Modeling
+* Dimensional Modeling
+* ETL Development
+* SQL Aggregation
+* Analytical Query Design
+* Data Mart Development
+* Supply Chain Analytics
+* DuckDB
+* Git Version Control
+
+---
+
+# Future Enhancements
+
+* Add a reusable date dimension.
+* Develop interactive Power BI or Tableau dashboards.
+* Introduce inventory and supplier data marts.
+* Implement historical target tracking.
+* Automate the ETL pipeline.
+
+---
+
+# Conclusion
+
+This project demonstrates an end-to-end data warehousing solution using DuckDB and SQL. It showcases how raw operational data can be transformed into business-ready analytical models that support customer delivery analysis, product performance evaluation, and supply chain decision-making through well-designed dimensional models and data marts.
